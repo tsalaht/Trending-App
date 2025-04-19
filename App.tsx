@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect } from "react";
-import { StyleSheet, Text, View,SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, I18nManager } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { NativeBaseProvider, extendTheme } from "native-base";
@@ -12,8 +12,18 @@ import ProtectedScreens from "./Views/ProtectedScreens/Index";
 import BackgroundVideo from "./Views/Components/BackgroundVideo";
 import AuthPages from "./Views/Auth/Index";
 import AllPages from "./Views/Index";
+
 export default function App() {
   SplashScreen.preventAutoHideAsync();
+
+  // Ensure LTR mode
+  useEffect(() => {
+    if (I18nManager.isRTL) {
+      I18nManager.forceRTL(false);
+      I18nManager.allowRTL(false);
+    }
+  }, []);
+
   let [fontsLoaded] = useFonts({
     Alexandria_100Thin: require("./assets/fonts/Alexandria/static/Alexandria-Thin.ttf"),
     Alexandria_200ExtraLight: require("./assets/fonts/Alexandria/static/Alexandria-ExtraLight.ttf"),
@@ -29,33 +39,15 @@ export default function App() {
   const newFontTheme = {
     fontConfig: {
       Alexandria: {
-        100: {
-          normal: "Alexandria_100Thin",
-        },
-        200: {
-          normal: "Alexandria_200ExtraLight",
-        },
-        300: {
-          normal: "Alexandria_300Light",
-        },
-        400: {
-          normal: "Alexandria_400Regular",
-        },
-        500: {
-          normal: "Alexandria_500Medium",
-        },
-        600: {
-          normal: "Alexandria_600SemiBold",
-        },
-        700: {
-          normal: "Alexandria_700Bold",
-        },
-        800: {
-          normal: "Alexandria_800ExtraBold",
-        },
-        900: {
-          normal: "Alexandria_900Black",
-        },
+        100: { normal: "Alexandria_100Thin" },
+        200: { normal: "Alexandria_200ExtraLight" },
+        300: { normal: "Alexandria_300Light" },
+        400: { normal: "Alexandria_400Regular" },
+        500: { normal: "Alexandria_500Medium" },
+        600: { normal: "Alexandria_600SemiBold" },
+        700: { normal: "Alexandria_700Bold" },
+        800: { normal: "Alexandria_800ExtraBold" },
+        900: { normal: "Alexandria_900Black" },
       },
     },
     fonts: {
@@ -66,6 +58,7 @@ export default function App() {
   };
 
   const theme = extendTheme({ ...newFontTheme });
+
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync().catch((error) => {
@@ -75,15 +68,14 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) return null;
+
   return (
     <Provider store={store}>
-        <NativeBaseProvider theme={theme}>
-          <NavigationContainer >
-   
-      <AllPages/>
-          </NavigationContainer>
-        </NativeBaseProvider>
-    
+      <NativeBaseProvider theme={theme}>
+        <NavigationContainer>
+          <AllPages />
+        </NavigationContainer>
+      </NativeBaseProvider>
     </Provider>
   );
 }
@@ -94,6 +86,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width:'100%'
+    width: "100%",
   },
 });

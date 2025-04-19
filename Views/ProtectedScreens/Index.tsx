@@ -8,8 +8,7 @@ import {
 import { User,Home as HomeIcone ,Notification,Clock} from "iconsax-react-native";
 import Home from "./Home/Index";
 import Header from "./Headers/Index";
-import styles from "../Styles";
-import { useSelector } from "react-redux";
+
 
 
 

@@ -42,7 +42,7 @@ export default function Login() {
       return;
     }
     showToast("Login successful", "success");
-    dispatch(setPassHome(true)); // Show success toast
+    navigation.navigate("PlansAndPricing");
   };
    const showToast = (message:any, bgColor:any) => {
       toast.show({

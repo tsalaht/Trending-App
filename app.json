@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Trending app",
-    "slug": "Trending app",
+    "slug": "trending-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
@@ -17,12 +17,20 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#FFA500",
+        "resizeMode": "contain"
+      },
+      "package": "com.salaheddinet.trendingapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9941fd03-388f-4cb3-87ef-a32a58b21ddd"
+      }
+    },
+    "owner": "salaheddinet"
   }
 }

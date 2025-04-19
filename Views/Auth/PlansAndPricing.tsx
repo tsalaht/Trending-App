@@ -6,7 +6,10 @@ import styles from '../Styles';
 import Swiper from 'react-native-swiper';
 import logo from '../../assets/logo.png';
 import { useNavigation } from '@react-navigation/native';
+import { setPassHome } from "../../store/PassHomeSlice";
+import { useDispatch } from "react-redux";
 export default function PlansAndPricing() {
+    const dispatch = useDispatch();
    const navigation: any = useNavigation();
    const logoSource: any = logo;
   const plans = [
@@ -76,7 +79,6 @@ export default function PlansAndPricing() {
 
         {/* Swiper */}
         <Swiper
-          style={styles.wrapper}
           showsButtons={false} // Remove pagination arrows
           loop={false}
           dotColor="#FFA500"
@@ -123,19 +125,22 @@ export default function PlansAndPricing() {
 
               {/* Select Button */}
               <Pressable
-                borderRadius="full"
-                bgColor="#FFFFFF"
-                px={6}
-                py={3}
-                mt={8}
-                justifyContent="center"
-                alignItems="center"
-                onPress={()=>navigation.navigate("Register")}
-              >
-                <Text color="#000000" fontWeight="bold">
-                  Select
-                </Text>
-              </Pressable>
+              onPress={() =>  dispatch(setPassHome(true)) }
+  borderRadius="full"
+  bgColor="#FFFFFF"
+  px={6}
+  py={3}
+  mt={8}
+  justifyContent="center"
+  alignItems="center"
+  // Add these:
+  flex={0.5}
+  alignSelf="stretch"
+>
+  <Text color="#000000" fontWeight="bold">
+    Select
+  </Text>
+</Pressable>
             </Box>
           ))}
         </Swiper>

@@ -2,10 +2,9 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import { Video, ResizeMode } from 'expo-av';
 import { Stack,Image } from 'native-base';
-import Bck from '../../assets/background.png'
 
-const { width, height } = Dimensions.get('window'); // Get full screen size
-const fullllheight =height+20
+
+const { width, height } = Dimensions.get('window'); 
 const BackgroundVideo = () => {
   const videoRef = useRef<Video>(null);
 
@@ -19,7 +18,7 @@ const BackgroundVideo = () => {
     <View style={styles.container}>
       {/* Dark Overlay */}
       <Stack w={'full'} h={'full'} bgColor={'black'} zIndex={1} opacity={0.8}/>
-      <Image  source={Bck}  style={styles.backgroundVideo} alt='back'/>
+      <Image  source={require('../../assets/background_image.jpg')}  style={styles.backgroundVideo} alt='back'/>
     </View>
   );
 };

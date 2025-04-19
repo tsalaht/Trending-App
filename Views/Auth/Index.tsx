@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator<any>();
 
 const AuthPages: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="PlansAndPricing">
+    <Stack.Navigator initialRouteName="Register">
       <Stack.Screen
         name="PlansAndPricing"
         component={PlansAndPricing}
